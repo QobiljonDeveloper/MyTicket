@@ -9,6 +9,7 @@ import { SeatTypeModule } from './seat_type/seat_type.module';
 import { LangModule } from './lang/lang.module';
 import { TicketStatusModule } from './ticket_status/ticket_status.module';
 import { PaymentMethodModule } from './payment_method/payment_method.module';
+import { DeliveryMethodModule } from './delivery_method/delivery_method.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PaymentMethodModule } from './payment_method/payment_method.module';
     LangModule,
     TicketStatusModule,
     PaymentMethodModule,
+    DeliveryMethodModule,
   ],
   controllers: [],
   providers: [],
