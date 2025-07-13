@@ -1,0 +1,41 @@
+import { Injectable } from "@nestjs/common";
+import { CreateSeatTypeDto } from "./dto/create-seat_type.dto";
+import { UpdateSeatTypeDto } from "./dto/update-seat_type.dto";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { SeatType } from "./schemas/seat_type.schemas";
+
+@Injectable()
+export class SeatTypeService {
+  constructor(
+    @InjectModel(SeatType.name) private readonly seatTypeSchema: Model<SeatType>
+  ) {}
+  async create(createSeatTypeDto: CreateSeatTypeDto) {
+    const candidate = await this.seatTypeSchema.findOne({
+      name: createSeatTypeDto.name,
+    });
+
+    if (!candidate) {
+      throw new Error("Bunday seatType allaqachon mavjud");
+    }
+    return this.seatTypeSchema.create(createSeatTypeDto);
+  }
+
+  async findAll() {
+    return this.seatTypeSchema.find();
+  }
+
+  async findOne(id: number) {
+    return this.seatTypeSchema.findById(id);
+  }
+
+  async update(id: number, updateSeatTypeDto: UpdateSeatTypeDto) {
+    return this.seatTypeSchema.findByIdAndUpdate(id, updateSeatTypeDto, {
+      new: true,
+    });
+  }
+
+  async remove(id: number) {
+    return this.seatTypeSchema.findByIdAndDelete(id);
+  }
+}
