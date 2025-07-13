@@ -19,16 +19,16 @@ export class SeatTypeController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return this.seatTypeService.findOne(+id);
+    return this.seatTypeService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateSeatTypeDto: UpdateSeatTypeDto) {
-    return this.seatTypeService.update(+id, updateSeatTypeDto);
+    return this.seatTypeService.update(id, updateSeatTypeDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return this.seatTypeService.remove(+id);
+    return this.seatTypeService.remove(id);
   }
 }

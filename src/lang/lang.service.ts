@@ -1,26 +1,41 @@
-import { Injectable } from '@nestjs/common';
-import { CreateLangDto } from './dto/create-lang.dto';
-import { UpdateLangDto } from './dto/update-lang.dto';
+import { Injectable } from "@nestjs/common";
+import { CreateLangDto } from "./dto/create-lang.dto";
+import { UpdateLangDto } from "./dto/update-lang.dto";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { Lang } from "./schemas/lang.schema";
 
 @Injectable()
 export class LangService {
-  create(createLangDto: CreateLangDto) {
-    return 'This action adds a new lang';
+  constructor(
+    @InjectModel(Lang.name) private readonly langSchema: Model<Lang>
+  ) {}
+  async create(createLangDto: CreateLangDto) {
+    const candidate = await this.langSchema.findOne({
+      name: createLangDto.name,
+    });
+
+    if (!candidate) {
+      throw new Error("Bunday lang allaqachon mavjud");
+    }
+    return this.langSchema.create(createLangDto);
   }
 
-  findAll() {
-    return `This action returns all lang`;
+  async findAll() {
+    return this.langSchema.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} lang`;
+  async findOne(id: string) {
+    return this.langSchema.findById(id);
   }
 
-  update(id: number, updateLangDto: UpdateLangDto) {
-    return `This action updates a #${id} lang`;
+  async update(id: string, updateLangDto: UpdateLangDto) {
+    return this.langSchema.findByIdAndUpdate(id, updateLangDto, {
+      new: true,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} lang`;
+  async remove(id: string) {
+    return this.langSchema.findByIdAndDelete(id);
   }
 }

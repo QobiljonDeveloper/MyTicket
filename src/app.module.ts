@@ -7,6 +7,8 @@ import { TypesModule } from "./types/types.module";
 import { RegionModule } from "./region/region.module";
 import { SeatTypeModule } from './seat_type/seat_type.module';
 import { LangModule } from './lang/lang.module';
+import { TicketStatusModule } from './ticket_status/ticket_status.module';
+import { PaymentMethodModule } from './payment_method/payment_method.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { LangModule } from './lang/lang.module';
     RegionModule,
     SeatTypeModule,
     LangModule,
+    TicketStatusModule,
+    PaymentMethodModule,
   ],
   controllers: [],
   providers: [],

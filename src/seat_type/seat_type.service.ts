@@ -25,17 +25,17 @@ export class SeatTypeService {
     return this.seatTypeSchema.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return this.seatTypeSchema.findById(id);
   }
 
-  async update(id: number, updateSeatTypeDto: UpdateSeatTypeDto) {
+  async update(id: string, updateSeatTypeDto: UpdateSeatTypeDto) {
     return this.seatTypeSchema.findByIdAndUpdate(id, updateSeatTypeDto, {
       new: true,
     });
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     return this.seatTypeSchema.findByIdAndDelete(id);
   }
 }
