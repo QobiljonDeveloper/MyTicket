@@ -10,6 +10,9 @@ import { LangModule } from './lang/lang.module';
 import { TicketStatusModule } from './ticket_status/ticket_status.module';
 import { PaymentMethodModule } from './payment_method/payment_method.module';
 import { DeliveryMethodModule } from './delivery_method/delivery_method.module';
+import { DistrictModule } from './district/district.module';
+import { VenueModule } from './venue/venue.module';
+import { VenuePhotoModule } from './venue_photo/venue_photo.module';
 
 @Module({
   imports: [
@@ -24,6 +27,9 @@ import { DeliveryMethodModule } from './delivery_method/delivery_method.module';
     TicketStatusModule,
     PaymentMethodModule,
     DeliveryMethodModule,
+    DistrictModule,
+    VenueModule,
+    VenuePhotoModule,
   ],
   controllers: [],
   providers: [],

@@ -22,11 +22,11 @@ export class RegionService {
     return this.regionSchema.create(createRegionDto);
   }
 
-  findAll() {
-    return this.regionSchema.find();
+  async findAll() {
+    return this.regionSchema.find().populate("districts");
   }
 
-  findOne(id: string) {
+  async findOne(id: string) {
     return this.regionSchema.findById(id);
   }
 

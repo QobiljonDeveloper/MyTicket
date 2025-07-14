@@ -1,24 +1,20 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { HydratedDocument } from "mongoose";
-import { District } from "src/district/schemas/district.schema";
+import { Region } from "src/region/schema/region.schema";
 import { Venue } from "src/venue/schemas/venue.schema";
 
-export type RegionDocument = HydratedDocument<Region>;
+export type DistrictDocument = HydratedDocument<District>;
 
 @Schema({ versionKey: false, timestamps: false })
-export class Region {
+export class District {
   @Prop()
   name: string;
 
   @Prop({
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "District",
-      },
-    ],
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Region",
   })
-  districts: District[];
+  region: Region;
 
   @Prop({
     type: [
@@ -31,4 +27,4 @@ export class Region {
   venues: Venue;
 }
 
-export const RegionSchema = SchemaFactory.createForClass(Region);
+export const DistrictSchema = SchemaFactory.createForClass(District);
