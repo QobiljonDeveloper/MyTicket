@@ -1,18 +1,30 @@
-import { Controller, Post, Body, Res } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { CreateAdminDto } from 'src/admin/dto/create-admin.dto';
-import { LoginAdminDto } from 'src/admin/dto/login.admin.dto';
-import { Response } from 'express';
+import { Controller, Post, Body, Res, Req } from "@nestjs/common";
+import { AuthService } from "./auth.service";
+import { CreateAdminDto } from "src/admin/dto/create-admin.dto";
+import { LoginAdminDto } from "src/admin/dto/login.admin.dto";
+import { Request, Response } from "express";
 
-@Controller('auth')
-export class AuthController { 
+@Controller("auth")
+export class AuthController {
   constructor(private readonly authService: AuthService) {}
-  @Post('register')
+  @Post("register")
   async registiration(@Body() createAdminDto: CreateAdminDto) {
-    return this.authService.registiration(createAdminDto);
+    return this.authService.registration(createAdminDto);
   }
-  @Post('login')
-  async login(@Body() loginDto: LoginAdminDto, @Res({passthrough:true}) res: Response) {
+  @Post("login")
+  async login(
+    @Body() loginDto: LoginAdminDto,
+    @Res({ passthrough: true }) res: Response
+  ) {
     return this.authService.login(loginDto, res);
+  }
+  @Post("refresh")
+  refresh(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    return this.authService.refreshToken(req, res);
+  }
+
+  @Post("logout")
+  logout(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    return this.authService.logout(req, res);
   }
 }
