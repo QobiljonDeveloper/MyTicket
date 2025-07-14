@@ -11,13 +11,6 @@ export class SeatTypeService {
     @InjectModel(SeatType.name) private readonly seatTypeSchema: Model<SeatType>
   ) {}
   async create(createSeatTypeDto: CreateSeatTypeDto) {
-    const candidate = await this.seatTypeSchema.findOne({
-      name: createSeatTypeDto.name,
-    });
-
-    if (!candidate) {
-      throw new Error("Bunday seatType allaqachon mavjud");
-    }
     return this.seatTypeSchema.create(createSeatTypeDto);
   }
 
