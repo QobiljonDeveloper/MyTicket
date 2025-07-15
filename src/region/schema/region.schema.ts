@@ -10,15 +10,15 @@ export class Region {
   @Prop()
   name: string;
 
-  @Prop({
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "District",
-      },
-    ],
-  })
-  districts: District[];
+    @Prop({
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "District",
+        },
+      ],
+    })
+    districts: District[];
 
   @Prop({
     type: [

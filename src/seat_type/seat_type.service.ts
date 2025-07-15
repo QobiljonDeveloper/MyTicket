@@ -11,7 +11,7 @@ export class SeatTypeService {
     @InjectModel(SeatType.name) private readonly seatTypeSchema: Model<SeatType>
   ) {}
   async create(createSeatTypeDto: CreateSeatTypeDto) {
-    return this.seatTypeSchema.create(createSeatTypeDto);
+      return this.seatTypeSchema.create(createSeatTypeDto);
   }
 
   async findAll() {
